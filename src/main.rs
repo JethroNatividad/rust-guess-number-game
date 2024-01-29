@@ -43,50 +43,67 @@ fn get_difficulty() -> Difficulty {
     }
 }
 
-fn main() {
-    // get difficulty, "Pick a difficulty level (1, 2, or 3): "
-    // reask if not 1, 2, or 3
-    let difficulty: Difficulty = get_difficulty();
-    // initialize attemps = 1
-    let mut attempts: i64 = 1;
-    let mut rng = rand::thread_rng();
-
-    // generate random_number, based on the difficulty. 1 = 1 - 10, 2 = 1 - 100, 3 = 1 - 1000.
-    let random_number: i64 = match difficulty {
-        Difficulty::Easy => rng.gen_range(1..=10),
-        Difficulty::Medium => rng.gen_range(1..=100),
-        Difficulty::Hard => rng.gen_range(1..=1000),
-    };
-
-    println!("{}", random_number);
-
-    // get guess, "I have my number. What's your guess? "
-    let mut guess: i64 = get_input("I have my number. What's your guess? ");
-
+fn get_retry() -> bool {
     loop {
-        // if guessed correctly
-        // get plural guess/guesses
-        // print "You got it in {} guess/guesses!"
-        if guess == random_number {
-            break println!("You got it in {} guesses!", attempts);
-        }
-
-        // if guess > random_number
-        // increment attempts, reask "Too high. Guess again: "
-        if guess > random_number {
-            attempts += 1;
-            guess = get_input("Too high. Guess again: ");
-        }
-
-        // if guess < random_number
-        // increment attempts, reask "Too low. Guess again: "
-        if guess < random_number {
-            attempts += 1;
-            guess = get_input("Too low. Guess again: ");
+        let retry: String = get_input("Play again? (y/n): ");
+        match retry.to_lowercase().as_str() {
+            "n" => return false,
+            "y" => return true,
+            _ => println!("Invalid input. Please try again."),
         }
     }
+}
 
-    // Ask, "Play again? "
-    // reask if not y or n
-    // if n, print "Goodbye!"
+fn main() {
+    loop {
+        // get difficulty, "Pick a difficulty level (1, 2, or 3): "
+        // reask if not 1, 2, or 3
+        let difficulty: Difficulty = get_difficulty();
+        // initialize attemps = 1
+        let mut attempts: i64 = 1;
+        let mut rng = rand::thread_rng();
+
+        // generate random_number, based on the difficulty. 1 = 1 - 10, 2 = 1 - 100, 3 = 1 - 1000.
+        let random_number: i64 = match difficulty {
+            Difficulty::Easy => rng.gen_range(1..=10),
+            Difficulty::Medium => rng.gen_range(1..=100),
+            Difficulty::Hard => rng.gen_range(1..=1000),
+        };
+
+        println!("{}", random_number);
+
+        // get guess, "I have my number. What's your guess? "
+        let mut guess: i64 = get_input("I have my number. What's your guess? ");
+
+        loop {
+            // if guessed correctly
+            // get plural guess/guesses
+            // print "You got it in {} guess/guesses!"
+            if guess == random_number {
+                break println!("You got it in {} guesses!", attempts);
+            }
+
+            // if guess > random_number
+            // increment attempts, reask "Too high. Guess again: "
+            if guess > random_number {
+                attempts += 1;
+                guess = get_input("Too high. Guess again: ");
+            }
+
+            // if guess < random_number
+            // increment attempts, reask "Too low. Guess again: "
+            if guess < random_number {
+                attempts += 1;
+                guess = get_input("Too low. Guess again: ");
+            }
+        }
+
+        // Ask, "Play again? "
+        // reask if not y or n
+        // if n, print "Goodbye!"
+        let retry: bool = get_retry();
+        if !retry {
+            break;
+        }
+    }
 }
