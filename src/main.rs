@@ -1,6 +1,6 @@
+use rand::Rng;
 use std::io;
 use std::io::Write;
-use rand::Rng;
 
 // Guess number game, 3 levels. level 1: 1 - 10, Level 2: 1 - 100, Level 3: 1 - 1000. show Too high, Too low, track the attempts.
 // Inputs: level, guess
@@ -49,13 +49,16 @@ fn main() {
     let difficulty: Difficulty = get_difficulty();
     // initialize attemps = 1
     let attemps: i64 = 1;
+    let mut rng = rand::thread_rng();
 
     // generate random_number, based on the difficulty. 1 = 1 - 10, 2 = 1 - 100, 3 = 1 - 1000.
     let random_number: i64 = match difficulty {
         Difficulty::Easy => rng.gen_range(1..=10),
         Difficulty::Medium => rng.gen_range(1..=100),
         Difficulty::Hard => rng.gen_range(1..=1000),
-    }
+    };
+
+    println!("{}", random_number)
 
     // get guess, "I have my number. What's your guess? "
 
