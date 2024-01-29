@@ -48,7 +48,7 @@ fn main() {
     // reask if not 1, 2, or 3
     let difficulty: Difficulty = get_difficulty();
     // initialize attemps = 1
-    let attempts: i64 = 1;
+    let mut attempts: i64 = 1;
     let mut rng = rand::thread_rng();
 
     // generate random_number, based on the difficulty. 1 = 1 - 10, 2 = 1 - 100, 3 = 1 - 1000.
@@ -58,7 +58,7 @@ fn main() {
         Difficulty::Hard => rng.gen_range(1..=1000),
     };
 
-    println!("{}", random_number)
+    println!("{}", random_number);
 
     // get guess, "I have my number. What's your guess? "
     let mut guess: i64 = get_input("I have my number. What's your guess? ");
@@ -77,14 +77,13 @@ fn main() {
             attempts += 1;
             guess = get_input("Too high. Guess again: ");
         }
-        
+
         // if guess < random_number
         // increment attempts, reask "Too low. Guess again: "
         if guess < random_number {
             attempts += 1;
             guess = get_input("Too low. Guess again: ");
         }
-
     }
 
     // Ask, "Play again? "
