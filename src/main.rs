@@ -4,5 +4,24 @@
 // Outputs: Too High, Too Low, You got it in n guesses!
 
 fn main() {
-    println!("Hello, world!");
+    // get difficulty, "Pick a difficulty level (1, 2, or 3): "
+    // reask if not 1, 2, or 3
+
+    // generate random_number, based on the difficulty. 1 = 1 - 10, 2 = 1 - 100, 3 = 1 - 1000.
+    // make attempts variable
+
+    // get guess, "I have my number. What's your guess? "
+
+    // if guess > random_number
+    // increment attempts, reask "Too high. Guess again: "
+
+    // if guess < random_number
+    // increment attempts, reask "Too low. Guess again: "
+
+    // if guessed correctly
+    // print "You got it in {} guesses!"
+
+    // Ask, "Play again? "
+    // reask if not y or n
+    // if n, print "Goodbye!"
 }
