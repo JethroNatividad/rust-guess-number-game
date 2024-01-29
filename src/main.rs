@@ -46,6 +46,7 @@ fn main() {
     // get difficulty, "Pick a difficulty level (1, 2, or 3): "
     // reask if not 1, 2, or 3
     let difficulty: Difficulty = get_difficulty();
+
     // generate random_number, based on the difficulty. 1 = 1 - 10, 2 = 1 - 100, 3 = 1 - 1000.
     // initialize attemps = 1
 
