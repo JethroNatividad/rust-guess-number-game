@@ -23,10 +23,29 @@ fn get_input<T: std::str::FromStr>(prompt: &str) -> T {
     }
 }
 
+#[derive(Debug)]
+enum Difficulty {
+    Easy = 1,
+    Medium = 2,
+    Hard = 3,
+}
+
+fn get_difficulty() -> Difficulty {
+    loop {
+        let input: i32 = get_input("Pick a difficulty level (1, 2, or 3): ");
+        match input {
+            1 => return Difficulty::Easy,
+            2 => return Difficulty::Medium,
+            3 => return Difficulty::Hard,
+            _ => println!("Invalid input. Please try again."),
+        }
+    }
+}
+
 fn main() {
     // get difficulty, "Pick a difficulty level (1, 2, or 3): "
     // reask if not 1, 2, or 3
-
+    let difficulty: Difficulty = get_difficulty();
     // generate random_number, based on the difficulty. 1 = 1 - 10, 2 = 1 - 100, 3 = 1 - 1000.
     // initialize attemps = 1
 
