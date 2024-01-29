@@ -74,14 +74,14 @@ fn main() {
         // if guess > random_number
         // increment attempts, reask "Too high. Guess again: "
         if guess > random_number {
-            attemps += 1;
+            attempts += 1;
             guess = get_input("Too high. Guess again: ");
         }
         
         // if guess < random_number
         // increment attempts, reask "Too low. Guess again: "
         if guess < random_number {
-            attemps += 1;
+            attempts += 1;
             guess = get_input("Too low. Guess again: ");
         }
 
