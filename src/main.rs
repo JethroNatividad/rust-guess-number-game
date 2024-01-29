@@ -13,7 +13,8 @@ fn main() {
     // get guess, "I have my number. What's your guess? "
 
     // if guessed correctly
-    // print "You got it in {} guesses!"
+    // get plural guess/guesses
+    // print "You got it in {} guess/guesses!"
 
     // if guess > random_number
     // increment attempts, reask "Too high. Guess again: "
