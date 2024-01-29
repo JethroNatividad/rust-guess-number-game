@@ -61,6 +61,7 @@ fn main() {
     println!("{}", random_number)
 
     // get guess, "I have my number. What's your guess? "
+    let mut guess: i64 = get_input("I have my number. What's your guess? ");
 
     // if guessed correctly
     // get plural guess/guesses
